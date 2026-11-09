@@ -103,16 +103,21 @@ Clicking **Export RLHF JSONL Payload** generates a valid, newline-delimited JSON
 
 ---
 
-## 6. Running Locally & Deploying
+## 6. Running Locally & Deploying to GitHub Pages
+
+### Method A: Zero-Build Standalone GitHub Pages (`main` branch root)
+`index.html` is architected to run **100% standalone directly in the browser without a build step**:
+- Contains all 4 pre-loaded clinical scenarios, the custom live clinical evaluator (with direct Gemini REST API + deterministic clinical analyzer fallback), the interactive SVG Batch Score Distribution bar chart (`By Case` and `Axis Means`), Tailwind CSS via CDN, and Lucide icons via CDN.
+- Contains zero uncompiled `.tsx` script references and guards all environment variable checks (`typeof process !== 'undefined'`), preventing blank white screens or `ReferenceError: process is not defined` on `https://<username>.github.io/<repo-name>/`.
+
+### Method B: Automated GitHub Actions Build & Deploy (`.github/workflows/deploy.yml`)
+- `vite.config.ts` is configured with `base: './'` so all compiled assets resolve via relative paths on GitHub Pages repository subfolders.
+- Pushing to `main` automatically triggers `.github/workflows/deploy.yml`, which builds the production bundle and deploys `./dist` to GitHub Pages.
 
 ### Local Full-Stack Development
 ```bash
 npm install
 npm run dev
 ```
-The application runs on `http://localhost:3000`. The pre-loaded 4 clinical scenarios work immediately with zero external dependencies, while the **Custom Live Clinical Vignette** evaluator connects to the backend Gemini alignment endpoint (`/api/evaluate`) and includes a deterministic offline clinical analyzer fallback for static hosting environments (such as GitHub Pages).
+The application runs on `http://localhost:3000`.
 
-### Production Build
-```bash
-npm run build
-```
