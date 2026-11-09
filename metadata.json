@@ -1,0 +1,6 @@
+{
+  "name": "ClinRLHF Workbench: Medical LLM Evaluation & Hallucination Auditor",
+  "description": "Clinical RLHF/DPO evaluation workbench and medical LLM hallucination auditor authored by Dr. Ibrahim Mohammed (MD | MDCN/R/107127) for pharmacotherapeutic safety scoring, side-by-side model alignment comparison, and JSONL dataset curation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
